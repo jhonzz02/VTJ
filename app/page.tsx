@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   Calendar,
   Mic,
@@ -26,7 +26,7 @@ export default function Home() {
   // --- CONFIGURAÇÕES DE ANIMAÇÃO (VARIANTS) ---
 
   // 1. Configuração do Container Pai (controla a orquestra)
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -40,7 +40,7 @@ export default function Home() {
   };
 
   // 2. Configuração dos Itens Filhos (o que cada um faz)
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 }, // Começa invisível e um pouco pra baixo
     visible: {
       opacity: 1,
@@ -63,7 +63,7 @@ export default function Home() {
               scale: 1.05,
             }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-gradient-to-br from-zinc-900 via-black to-violet-950"
+            className="fixed inset-0 z-100 flex items-center justify-center bg-linear-to-br from-zinc-900 via-black to-violet-950"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -100,8 +100,8 @@ export default function Home() {
           >
             <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold tracking-tighter bg-gradient-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] bg-clip-text text-transparent">VTJ</span>
-                <div className="h-4 w-[2px] bg-zinc-300 dark:bg-zinc-700"></div>
+                <span className="text-2xl font-bold tracking-tighter bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] bg-clip-text text-transparent">VTJ</span>
+                <div className="h-4 w-0.5 bg-zinc-300 dark:bg-zinc-700"></div>
                 <span className="text-2xl font-medium">
                   Maia
                 </span>
@@ -145,7 +145,7 @@ export default function Home() {
                   className="max-w-4xl text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl"
                 >
                   Organize sua vida com <br className="hidden md:block" />
-                  <span className="bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
+                  <span className="bg-linear-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
                     apenas um áudio.
                   </span>
                 </motion.h1>
@@ -153,7 +153,7 @@ export default function Home() {
                 {/* Descrição (Item 4) */}
                 <motion.p
                   variants={itemVariants}
-                  className="max-w-[600px] text-lg text-zinc-500 md:text-xl dark:text-zinc-400 leading-relaxed"
+                  className="max-w-150 text-lg text-zinc-500 md:text-xl dark:text-zinc-400 leading-relaxed"
                 >
                   Conheça a <strong>Maia</strong>. Envie uma mensagem de voz no
                   WhatsApp e veja seus compromissos aparecerem magicamente no
@@ -176,7 +176,7 @@ export default function Home() {
             {/* video */}
             <motion.div
               variants={itemVariants}
-              className="bg-gradient-to-r from-[#100B31] to-[#100B31] h-[calc(100vh-32px)] flex justify-center items-center"
+              className="bg-linear-to-r from-[#100B31] to-[#100B31] h-[calc(100vh-32px)] flex justify-center items-center"
               id="1"
             >
               <div className="bg-amber-50 ">
@@ -273,7 +273,7 @@ export default function Home() {
             {/* section conversa + agenda*/}
             <motion.div variants={itemVariants} className="w-full pb-12">
               <div className="relative mx-auto max-w-5xl rounded-2xl border border-zinc-200 bg-white p-4 shadow-xl dark:border-zinc-800 dark:bg-zinc-950">
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500 to-transparent opacity-20"></div>
+                <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-violet-500 to-transparent opacity-20"></div>
 
                 <div className="grid md:grid-cols-2 gap-8 items-center p-8">
                   <div className="space-y-4">
@@ -339,7 +339,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
-              className="border-t border-zinc-200 bg-zinc-50 py-24 dark:border-zinc-800 bg-gradient-to-r from-[#100B31] to-[#100B31]"
+              className="border-t border-zinc-200 bg-zinc-50 py-24 dark:border-zinc-800 bg-linear-to-r from-[#100B31] to-[#100B31]"
             >
               <div className="container mx-auto px-4 text-center">
                 <h2 className="mb-6 text-3xl font-bold tracking-tight md:text-4xl">

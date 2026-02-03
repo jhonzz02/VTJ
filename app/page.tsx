@@ -7,7 +7,6 @@ import {
   Mic,
   MessageCircle,
   CheckCircle2,
-  ArrowRight,
   ArrowDown,
   AudioLines,
 } from "lucide-react";

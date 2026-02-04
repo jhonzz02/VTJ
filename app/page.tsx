@@ -118,7 +118,7 @@ export default function Home() {
                 {/*                 <button className="hidden md:block text-sm font-medium hover:underline">Login</button>
                  */}{" "}
                 <button className="rounded-full bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 dark:bg-white dark:text-black dark:hover:bg-zinc-200 transition-all">
-                  <a href="">Quero meu acesso agora!</a>
+                  <a href="https://pay.kiwify.com.br/fqyeisf" target="blank">Quero meu acesso agora!</a>
                 </button>
               </div>
             </div>
@@ -350,7 +350,7 @@ export default function Home() {
                   dia a dia.
                 </p>
                 <button className="rounded-full bg-black px-8 py-4 text-lg font-bold text-white shadow-lg hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200 transition-all transform hover:scale-105 active:scale-95 duration-200">
-                  <a href="">Quero automatizar minha agenda!</a>
+                  <a href="https://pay.kiwify.com.br/fqyeisf" target="_blank">Quero automatizar minha agenda!</a>
                 </button>
               </div>
             </motion.section>

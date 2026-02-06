@@ -71,8 +71,8 @@ export default function Home() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="flex flex-col items-center"
             >
-              <span className="text-7xl md:text-8xl font-extrabold tracking-tighter text-white mb-4">
-                VTJ
+              <span className="text-7xl md:text-8xl font-extrabold tracking-tighter text-white mb-4 text-center">
+                Conheça Sua Assistente Virtual <br /> <br /> Maia
               </span>
               <motion.div
                 initial={{ width: 0 }}
@@ -100,11 +100,11 @@ export default function Home() {
           >
             <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold tracking-tighter bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] bg-clip-text text-transparent">VTJ</span>
-                <div className="h-4 w-0.5 bg-zinc-300 dark:bg-zinc-700"></div>
+                <span className="text-2xl font-bold tracking-tighter bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] bg-clip-text text-transparent">Maia</span>
+{/*                 <div className="h-4 w-0.5 bg-zinc-300 dark:bg-zinc-700"></div>
                 <span className="text-2xl font-medium">
-                  Maia
-                </span>
+                  VTJ
+                </span> */}
               </div>
 
               <nav className="hidden md:flex gap-6 text-sm font-medium">
@@ -167,7 +167,7 @@ export default function Home() {
                 >
                   <button className="inline-flex h-12 items-center justify-center rounded-full bg-violet-600 px-8 text-base font-medium text-white shadow transition-colors hover:bg-violet-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-violet-700">
                     <a href="#1">Ver demonstração </a>
-                    <ArrowDown className="ml-2 h-4 w-4" />
+                    <ArrowDown className="ml-h-4 w-4" />
                   </button>
                 </motion.div>
               </div>
@@ -176,7 +176,7 @@ export default function Home() {
             {/* video */}
             <motion.div
               variants={itemVariants}
-              className="bg-linear-to-r from-[#100B31] to-[#100B31] h-[calc(100vh-32px)] flex justify-center items-center"
+              className="bg-linear-to-r from-[#18114b] to-[#191150] h-[calc(100vh-32px)] flex justify-center items-center"
               id="1"
             >
               <div className="bg-amber-50 ">
@@ -339,7 +339,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
-              className="border-t border-zinc-200 bg-zinc-50 py-24 dark:border-zinc-800 bg-linear-to-r from-[#100B31] to-[#100B31]"
+              className="border-t border-zinc-200 bg-zinc-50 py-24 dark:border-zinc-800 bg-linear-to-r from-[#18114b] to-[#191150]"
             >
               <div className="container mx-auto px-4 text-center">
                 <h2 className="mb-6 text-3xl font-bold tracking-tight md:text-4xl">
@@ -366,13 +366,13 @@ export default function Home() {
           >
             <div className="container mx-auto flex flex-col max-sm:flex-col-reverse items-center justify-between px-4 gap-4 md:flex-row text-zinc-500 dark:text-zinc-400 text-sm">
               <div className="flex gap-6">
-                <Image
+{/*                 <Image
                   src="/Logo.png"
                   alt="Logo da Marca"
                   width={30}
                   height={30}
                   className="rounded-full object-cover hover:cursor-pointer transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 backdrop-blur-sm"
-                />
+                /> */}
                 <p className="flex justify-center items-center">
                   © 2026 VTJ Tecnologia. Todos os direitos reservados.
                 </p>

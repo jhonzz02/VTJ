@@ -25,9 +25,34 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* No seu arquivo CSS global */
 html {
   scroll-behavior: smooth;
-  /* Coloque aqui a altura da sua navbar + um respiro (ex: 80px ou 5rem) */
   scroll-padding-top: 80px; 
+}
+
+@layer utilities {
+  .inner-glow-gradient {
+    position: relative;
+    background: #0B0E14; /* Cor de fundo do card */
+    border-radius: 1rem; /* Ajuste conforme seu design */
+    overflow: hidden;
+  }
+
+  .inner-glow-gradient::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px; /* Espessura da "sombra" ou borda */
+    background: linear-gradient(to right, #0D42BE, #2325C3, #360FC9);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
 }

@@ -48,7 +48,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-zinc-50 text-zinc-900 font-sans dark:bg-black dark:text-zinc-50 selection:bg-violet-500 selection:text-white relative">
+    <div className="flex min-h-screen flex-col selection:bg-violet-500 selection:text-white relative">
       {/* --- SPLASH SCREEN --- */}
       <AnimatePresence mode="wait">
         {isLoading && (
@@ -94,56 +94,44 @@ export default function Home() {
           {/* --- Header (Item 1 da cascata) --- */}
           <motion.header
             variants={itemVariants}
-            className="sticky top-0 z-50 w-full border-b border-zinc-200 bg-white/80 backdrop-blur-md dark:border-zinc-800 dark:bg-black/80"
+            className="sticky top-0 z-50 w-full border-b backdrop-blur-md bg-black"
           >
             <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-              <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold tracking-tighter bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] bg-clip-text text-transparent">
-                  Maia
-                </span>
-                {/*                 <div className="h-4 w-0.5 bg-zinc-300 dark:bg-zinc-700"></div>
-                <span className="text-2xl font-medium">
-                  VTJ
-                </span> */}
+              <div className="text-2xl font-bold tracking-tighter bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] bg-clip-text text-transparent">
+                Maia
               </div>
-
-              <nav className="hidden md:flex gap-6 text-sm font-medium">
-                {/*                 <Link href="#1" className="hover:text-violet-600 transition-colors">Como funciona</Link>
-                 */}
-                {/*                 <Link href="#privacidade" className="hover:text-violet-600 transition-colors">Privacidade</Link>
-                 */}{" "}
-              </nav>
-
-              <div className="flex items-center gap-4">
-                {/*                 <button className="hidden md:block text-sm font-medium hover:underline">Login</button>
-                 */}{" "}
-                <button className="rounded-full bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 dark:bg-white dark:text-black dark:hover:bg-zinc-200 transition-all">
-                  <a href="https://pay.kiwify.com.br/fqyeisf" target="blank">
-                    Quero meu acesso agora!
-                  </a>
-                </button>
-              </div>
+              <button
+                onClick={() =>
+                  window.open(
+                    "https://pay.kiwify.com.br/fqyeisf",
+                    "_blank",
+                    "noopener,noreferrer",
+                  )
+                }
+                className="font-bold flex items-center rounded-full bg-green-500 px-4 py-2 text-sm text-white hover:bg-green-700 transition-all cursor-pointer "
+              >
+                Quero meu acesso agora!
+              </button>
             </div>
           </motion.header>
-          <main className="flex-1">
+
+          <main className="flex-1 bg-black">
             {/* HERO */}
             <section className="container mx-auto px-4 flex flex-col justify-center">
               <div className="h-[calc(100vh-64px)] flex flex-col justify-center items-center text-center space-y-8 w-full">
-                {/* Badge (Item 2) */}
+                {/* frase de efeito */}
                 <motion.div
                   variants={itemVariants}
-                  className="inline-flex items-center rounded-full border border-zinc-200 bg-white px-3 py-1 text-sm shadow-sm dark:border-zinc-800 dark:bg-zinc-900"
+                  className="inline-flex items-center rounded-full border border-zinc-200 bg-white px-3 py-1 text-sm shadow-sm  "
                 >
                   <span className="flex h-2 w-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
-                  <span className="text-zinc-600 dark:text-zinc-400">
-                    Sua agenda, simplificada.
-                  </span>
+                  <span>Sua agenda, simplificada.</span>
                 </motion.div>
 
-                {/* Título (Item 3) */}
+                {/* Título */}
                 <motion.h1
                   variants={itemVariants}
-                  className="max-w-4xl text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl"
+                  className="max-w-4xl text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl text-white"
                 >
                   Organize sua vida com <br className="hidden md:block" />
                   <span className="bg-linear-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">
@@ -151,35 +139,39 @@ export default function Home() {
                   </span>
                 </motion.h1>
 
-                {/* Descrição (Item 4) */}
+                {/* Descrição*/}
                 <motion.p
                   variants={itemVariants}
-                  className="max-w-150 text-lg text-zinc-500 md:text-xl dark:text-zinc-400 leading-relaxed"
+                  className="max-w-150 text-lg text-white md:text-xl leading-relaxed"
                 >
                   Conheça a <strong>Maia</strong>. Envie uma mensagem de voz no
                   WhatsApp e veja seus compromissos aparecerem magicamente no
                   Google Agenda.
                 </motion.p>
 
-                {/* Botões (Item 5) */}
+                {/* Botões */}
                 <motion.div
                   variants={itemVariants}
                   className="flex flex-col sm:flex-row gap-4 w-full justify-center pt-4"
                 >
-                  <button className="inline-flex h-12 items-center justify-center rounded-full bg-violet-600 px-8 text-base font-medium text-white shadow transition-colors hover:bg-violet-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-violet-700">
-                    <a href="#1">Ver demonstração </a>
-                    <ArrowDown className="ml-h-4 w-4" />
-                  </button>
+                  <a
+                    href="#video"
+                    className="inline-flex h-12 items-center justify-center rounded-full bg-violet-600 px-8 text-base font-medium text-white shadow transition-colors hover:bg-violet-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-violet-700"
+                  >
+                    Ver demonstração
+                    <ArrowDown className="ml-2 h-4 w-4" />
+                  </a>
                 </motion.div>
               </div>
             </section>
+
             {/* video */}
             <motion.div
               variants={itemVariants}
-              className="bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] h-[calc(100vh-32px)] flex justify-center items-center"
-              id="1"
+              className="bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] h-[calc(100vh-32px)] flex justify-center items-center border-white border-y"
+              id="video"
             >
-              <div className="border">
+              <div>
                 <video
                   src="/Video.mp4"
                   className="h-[480] w-[848] rounded-lg"
@@ -194,7 +186,7 @@ export default function Home() {
 
             {/* COMO FUNCIONA */}
             <motion.section
-              className="container mx-auto px-4 py-12"
+              className="mx-auto py-12 text-white"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -204,101 +196,107 @@ export default function Home() {
                 <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
                   Como a Maia funciona?
                 </h2>
-                <p className="mt-4 text-zinc-500 dark:text-zinc-400">
-                  Fluxo simples, sem configurações complexas.
-                </p>
               </div>
 
-              <div className="grid gap-8 md:grid-cols-3">
-                {/* Card 1 (COM HOVER) */}
-                <motion.div
-                  whileHover={{
-                    y: -10,
-                    transition: { type: "spring", stiffness: 300 },
-                  }}
-                  className="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-white p-8 transition-colors hover:border-violet-200 hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-violet-900"
-                >
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-violet-100 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400">
-                    <AudioLines className="h-6 w-6" />
-                  </div>
-                  <h3 className="mb-2 text-xl font-bold">
-                    1. Envie um Áudio ou Mensagem
-                  </h3>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    Abra o WhatsApp e fale naturalmente. Não precisa digitar
-                    datas ou preencher formulários.
-                  </p>
-                </motion.div>
+              {/* cards */}
+              <div className="container mx-auto px-4">
+                <div className="flex flex-col md:flex-row gap-8">
+                  {/* Card 1 */}
+                  <motion.div
+                    whileHover={{
+                      y: -10,
+                      transition: { type: "spring", stiffness: 300 },
+                    }}
+                    className="flex-1 group relative overflow-hidden rounded-2xl border border-zinc-200 bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] text-white p-8 transition-colors hover:border-violet-200 hover:shadow-lg dark:hover:border-violet-900"
+                  >
+                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-violet-100 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400">
+                      <AudioLines className="h-6 w-6" />
+                    </div>
+                    <h3 className="mb-2 text-xl font-bold">
+                      1. Envie um Áudio ou Mensagem
+                    </h3>
+                    <p>
+                      Abra o WhatsApp e fale naturalmente. Não precisa digitar
+                      datas ou preencher formulários.
+                    </p>
+                  </motion.div>
 
-                {/* Card 2 (COM HOVER) */}
-                <motion.div
-                  whileHover={{
-                    y: -10,
-                    transition: { type: "spring", stiffness: 300 },
-                  }}
-                  className="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-white p-8 transition-colors hover:border-violet-200 hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-violet-900"
-                >
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-violet-100 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400">
-                    <MessageCircle className="h-6 w-6" />
-                  </div>
-                  <h3 className="mb-2 text-xl font-bold">2. IA Processa</h3>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    A Maia entende o contexto, identifica data, hora e
-                    participantes e confirma com você instantaneamente.
-                  </p>
-                </motion.div>
+                  {/* Card 2 */}
+                  <motion.div
+                    whileHover={{
+                      y: -10,
+                      transition: { type: "spring", stiffness: 300 },
+                    }}
+                    className="flex-1 group relative overflow-hidden rounded-2xl border border-zinc-200 bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] text-white p-8 transition-colors hover:border-violet-200 hover:shadow-lg dark:hover:border-violet-900"
+                  >
+                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-violet-100 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400">
+                      <MessageCircle className="h-6 w-6" />
+                    </div>
+                    <h3 className="mb-2 text-xl font-bold">2. IA Processa</h3>
+                    <p>
+                      A Maia entende o contexto, identifica data, hora e
+                      participantes e confirma com você instantaneamente.
+                    </p>
+                  </motion.div>
 
-                {/* Card 3 (COM HOVER) */}
-                <motion.div
-                  whileHover={{
-                    y: -10,
-                    transition: { type: "spring", stiffness: 300 },
-                  }}
-                  className="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-white p-8 transition-colors hover:border-violet-200 hover:shadow-lg dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-violet-900"
-                >
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-violet-100 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400">
-                    <CheckCircle2 className="h-6 w-6" />
-                  </div>
-                  <h3 className="mb-2 text-xl font-bold">
-                    3. Agenda Atualizada
-                  </h3>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    O evento é criado no seu Google Agenda e a Maia te envia
-                    lembretes antes do compromisso.
-                  </p>
-                </motion.div>
+                  {/* Card 3 */}
+                  <motion.div
+                    whileHover={{
+                      y: -10,
+                      transition: { type: "spring", stiffness: 300 },
+                    }}
+                    className="flex-1 group relative overflow-hidden rounded-2xl border border-zinc-200 bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] text-white p-8 transition-colors hover:border-violet-200 hover:shadow-lg dark:hover:border-violet-900"
+                  >
+                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-violet-100 text-violet-600 dark:bg-violet-900/20 dark:text-violet-400">
+                      <CheckCircle2 className="h-6 w-6" />
+                    </div>
+                    <h3 className="mb-2 text-xl font-bold">
+                      3. Agenda Atualizada
+                    </h3>
+                    <p>
+                      O evento é criado no seu Google Agenda e a Maia te envia
+                      lembretes antes do compromisso.
+                    </p>
+                  </motion.div>
+                </div>
               </div>
             </motion.section>
 
             {/* EXEMPLO */}
             <motion.div variants={itemVariants} className="w-full pb-12">
-              <div className="relative mx-auto max-w-5xl rounded-2xl border border-zinc-200 bg-white p-4 shadow-xl dark:border-zinc-800 dark:bg-zinc-950">
-                <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-violet-500 to-transparent opacity-20"></div>
+              <div className="relative mx-auto max-w-5xl rounded-2xl border border-zinc-200 bg-black p-4 shadow-xl">
+                <div className="absolute top-0 left-0 right-0 h-px bg-liner-to-r from-transparent via-violet-500 to-transparent opacity-20"></div>
 
                 <div className="grid md:grid-cols-2 gap-8 items-center p-8">
+                  {/* CHAT */}
                   <div className="space-y-4">
+                    {/* Mensagem usuário */}
                     <div className="flex items-end gap-3">
-                      <div className="h-8 w-8 rounded-full bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center text-xs">
+                      <div className="h-8 w-8 rounded-full bg-zinc-200 flex items-center justify-center text-xs">
                         Vc
                       </div>
-                      <div className="rounded-2xl rounded-bl-none bg-violet-100 px-4 py-2 text-zinc-900 dark:bg-violet-900/30 dark:text-violet-100">
+
+                      <div className="rounded-2xl rounded-bl-none bg-violet-900/30 px-4 py-2 text-zinc-900">
                         <div className="flex items-center gap-2">
                           <Mic className="h-4 w-4 text-violet-600" />
-                          <div className="h-1 w-24 rounded bg-violet-300 dark:bg-violet-700"></div>
+                          <div className="h-1 w-24 rounded bg-violet-700"></div>
                           <span className="text-xs text-violet-600">0:12</span>
                         </div>
-                        <p className="text-xs mt-1 opacity-70">
+
+                        <p className="text-xs mt-1 opacity-70 text-white">
                           Maia, marca um almoço com o Carlos amanhã às 12h30.
                         </p>
                       </div>
                     </div>
 
+                    {/* Resposta IA */}
                     <div className="flex items-end gap-3 flex-row-reverse">
                       <div className="h-8 w-8 rounded-full bg-violet-600 flex items-center justify-center text-xs text-white">
                         M
                       </div>
-                      <div className="rounded-2xl rounded-br-none bg-zinc-100 px-4 py-2 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100">
-                        <p className="text-sm">
+
+                      <div className="rounded-2xl rounded-br-none bg-zinc-900 px-4 py-2 text-zinc-900">
+                        <p className="text-sm text-white">
                           Combinado! Almoço com Carlos agendado para amanhã
                           (04/10) às 12:30. ✅
                         </p>
@@ -306,7 +304,8 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+                  {/* CARD AGENDA */}
+                  <div className="rounded-xl border border-zinc-200 bg-zinc-900 p-6 shadow-sm">
                     <div className="flex items-center gap-2 mb-6 text-zinc-500">
                       <Calendar className="h-5 w-5" />
                       <span className="text-sm font-semibold">
@@ -315,17 +314,20 @@ export default function Home() {
                     </div>
 
                     <div className="space-y-3">
-                      <div className="h-16 w-full rounded-lg border-l-4 border-violet-500 bg-violet-50 p-3 dark:bg-violet-900/10">
-                        <div className="text-sm font-bold text-violet-900 dark:text-violet-100">
+                      {/* Evento */}
+                      <div className="h-16 w-full rounded-lg border-l-4 border-violet-500 bg-violet-900/10 p-3">
+                        <div className="text-sm font-bold text-white">
                           Almoço com Carlos
                         </div>
-                        <div className="text-xs text-violet-700 dark:text-violet-300 mt-1">
+                        <div className="text-xs text-white mt-1">
                           12:30 - 13:30
                         </div>
                       </div>
-                      <div className="h-16 w-full rounded-lg border-l-4 border-zinc-300 bg-zinc-50 p-3 opacity-50 dark:border-zinc-700 dark:bg-zinc-800/50">
-                        <div className="h-3 w-24 rounded bg-zinc-200 mb-2 dark:bg-zinc-700"></div>
-                        <div className="h-2 w-16 rounded bg-zinc-200 dark:bg-zinc-700"></div>
+
+                      {/* Placeholder */}
+                      <div className="h-16 w-full rounded-lg border-l-4 border-zinc-700 bg-zinc-800/50 p-3 opacity-50">
+                        <div className="h-3 w-24 rounded bg-zinc-700 mb-2"></div>
+                        <div className="h-2 w-16 rounded bg-zinc-700"></div>
                       </div>
                     </div>
                   </div>
@@ -339,20 +341,27 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
-              className="border-t border-zinc-200 py-24 dark:border-zinc-800 bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9]"
+              className="border-t border-zinc-200 py-24  bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9]"
             >
               <div className="container mx-auto px-4 text-center">
-                <h2 className="mb-6 text-3xl font-bold tracking-tight md:text-4xl">
+                <h2 className="mb-6 text-3xl font-bold tracking-tight md:text-4xl text-white">
                   Pronto para recuperar seu tempo?
                 </h2>
-                <p className="mb-8 text-lg text-zinc-500 dark:text-zinc-400">
+                <p className="mb-8 text-lg text-white">
                   Junte-se a centenas de pessoas que usam a VTJ para gerenciar o
                   dia a dia.
                 </p>
-                <button className="rounded-full bg-black px-8 py-4 text-lg font-bold text-white shadow-lg hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200 transition-all transform hover:scale-105 active:scale-95 duration-200">
-                  <a href="https://pay.kiwify.com.br/fqyeisf" target="_blank">
-                    Quero automatizar minha agenda!
-                  </a>
+                <button
+                  onClick={() =>
+                    window.open(
+                      "https://pay.kiwify.com.br/fqyeisf",
+                      "_blank",
+                      "noopener,noreferrer",
+                    )
+                  }
+                  className="rounded-full px-8 py-4 text-lg font-bold text-white shadow-lg hover:bg-zinc-800 transition-all transform hover:scale-105 active:scale-95 duration-200 cursor-pointer bg-green-500"
+                >
+                  Quero automatizar minha agenda!
                 </button>
               </div>
             </motion.section>
@@ -363,7 +372,7 @@ export default function Home() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="border-t border-zinc-200 bg-white py-12 dark:border-zinc-800 dark:bg-black"
+            className="border-t border-zinc-200 py-12 bg-black"
           >
             <div className="container mx-auto flex flex-col max-sm:flex-col-reverse items-center justify-between px-4 gap-4 md:flex-row text-zinc-500 dark:text-zinc-400 text-sm">
               <div className="flex gap-6">
@@ -381,7 +390,8 @@ export default function Home() {
 
               <div className="flex gap-6">
                 <a
-                  href="#"
+                  href="https://wa.me/5511974530928?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre"
+                  target="_blank"
                   className="text-white hover:text-zinc-400 font-bold"
                 >
                   Contato

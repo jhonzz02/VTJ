@@ -26,44 +26,44 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-useEffect(() => {
-  const video = videoRef.current;
-  if (!video) return;
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
 
-  const tryPlayWithSound = async () => {
-    try {
-      video.muted = false;
-      video.volume = 0.5;
-      await video.play();
-    } catch (err) {
-      // fallback: começa mutado
-      video.muted = true;
-      video.play().catch(() => {});
-    }
-  };
+    const tryPlayWithSound = async () => {
+      try {
+        video.muted = false;
+        video.volume = 0.5;
+        await video.play();
+      } catch (err) {
+        // fallback: começa mutado
+        video.muted = true;
+        video.play().catch(() => {});
+      }
+    };
 
-  // tenta direto
-  tryPlayWithSound();
-
-  // força tentativa após micro-interação
-  const forceInteraction = () => {
+    // tenta direto
     tryPlayWithSound();
 
-    document.removeEventListener("click", forceInteraction);
-    document.removeEventListener("touchstart", forceInteraction);
-    document.removeEventListener("scroll", forceInteraction);
-  };
+    // força tentativa após micro-interação
+    const forceInteraction = () => {
+      tryPlayWithSound();
 
-  document.addEventListener("click", forceInteraction);
-  document.addEventListener("touchstart", forceInteraction);
-  document.addEventListener("scroll", forceInteraction);
+      document.removeEventListener("click", forceInteraction);
+      document.removeEventListener("touchstart", forceInteraction);
+      document.removeEventListener("scroll", forceInteraction);
+    };
 
-  return () => {
-    document.removeEventListener("click", forceInteraction);
-    document.removeEventListener("touchstart", forceInteraction);
-    document.removeEventListener("scroll", forceInteraction);
-  };
-}, []);
+    document.addEventListener("click", forceInteraction);
+    document.addEventListener("touchstart", forceInteraction);
+    document.addEventListener("scroll", forceInteraction);
+
+    return () => {
+      document.removeEventListener("click", forceInteraction);
+      document.removeEventListener("touchstart", forceInteraction);
+      document.removeEventListener("scroll", forceInteraction);
+    };
+  }, []);
 
   // --- CONFIGURAÇÕES DE ANIMAÇÃO (VARIANTS) ---
 
@@ -92,35 +92,31 @@ useEffect(() => {
   };
 
   //botao hero que abre o video
-const handleOpenVideo = () => {
-  const video = document.getElementById("demoVideo");
+  const handleOpenVideo = () => {
+    const video = document.getElementById("demoVideo");
 
-  if (!video) return;
+    if (!video) return;
 
-  // scroll suave
-  video.scrollIntoView({ behavior: "smooth", block: "center" });
+    // scroll suave
+    video.scrollIntoView({ behavior: "smooth", block: "center" });
 
-  // adiciona destaque visual (zoom leve)
-  video.classList.add("scale-105", "transition-all", "duration-500");
+    // adiciona destaque visual (zoom leve)
+    video.classList.add("scale-105", "transition-all", "duration-500");
 
-  setTimeout(() => {
-    video.classList.remove("scale-105");
-
-    // fullscreen
-    if (video.requestFullscreen) {
-      video.requestFullscreen();
-    } else if (video.webkitRequestFullscreen) {
-      video.webkitRequestFullscreen();
-    }
-
-    video.play();
-    // Tenta desmutar após play
     setTimeout(() => {
-      video.muted = false;
-      video.volume = 0.5;
-    }, 100);
-  }, 600); // tempo da animação
-};
+      video.classList.remove("scale-105");
+
+      // fullscreen
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.requestFullscreen) {
+        video.requestFullscreen();
+      }
+
+      /*     video.play();
+       */
+    }, 600); // tempo da animação
+  };
   return (
     <div className="flex min-h-screen flex-col selection:bg-violet-500 selection:text-white relative">
       {/* --- SPLASH SCREEN --- */}

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   Calendar,
@@ -16,6 +16,7 @@ import Image from "next/image";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     // Mantive o tempo de 2.5s que definimos antes
@@ -24,6 +25,45 @@ export default function Home() {
     }, 2500);
     return () => clearTimeout(timer);
   }, []);
+
+useEffect(() => {
+  const video = videoRef.current;
+  if (!video) return;
+
+  const tryPlayWithSound = async () => {
+    try {
+      video.muted = false;
+      video.volume = 0.5;
+      await video.play();
+    } catch (err) {
+      // fallback: começa mutado
+      video.muted = true;
+      video.play().catch(() => {});
+    }
+  };
+
+  // tenta direto
+  tryPlayWithSound();
+
+  // força tentativa após micro-interação
+  const forceInteraction = () => {
+    tryPlayWithSound();
+
+    document.removeEventListener("click", forceInteraction);
+    document.removeEventListener("touchstart", forceInteraction);
+    document.removeEventListener("scroll", forceInteraction);
+  };
+
+  document.addEventListener("click", forceInteraction);
+  document.addEventListener("touchstart", forceInteraction);
+  document.addEventListener("scroll", forceInteraction);
+
+  return () => {
+    document.removeEventListener("click", forceInteraction);
+    document.removeEventListener("touchstart", forceInteraction);
+    document.removeEventListener("scroll", forceInteraction);
+  };
+}, []);
 
   // --- CONFIGURAÇÕES DE ANIMAÇÃO (VARIANTS) ---
 
@@ -74,6 +114,11 @@ const handleOpenVideo = () => {
     }
 
     video.play();
+    // Tenta desmutar após play
+    setTimeout(() => {
+      video.muted = false;
+      video.volume = 0.5;
+    }, 100);
   }, 600); // tempo da animação
 };
   return (
@@ -223,11 +268,13 @@ const handleOpenVideo = () => {
                   >
                     <video
                       id="demoVideo"
+                      ref={videoRef}
                       src="/Video.mp4"
                       className="w-full max-w-2xl h-auto rounded-2xl shadow-2xl border-4 border-white/20"
                       controls
                       autoPlay
                       muted
+                      playsInline
                       loop
                     />
                   </motion.div>
@@ -275,7 +322,7 @@ const handleOpenVideo = () => {
                         },
                         {
                           icon: Search,
-                          text: "Buscas na internet com sugestão de endereços e locais",
+                          text: "Maia consegue fazer buscas na internet e mandar endereços através do google maps",
                         },
                       ].map((feature, index) => (
                         <motion.div

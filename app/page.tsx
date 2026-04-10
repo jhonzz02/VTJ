@@ -9,6 +9,7 @@ import {
   ArrowDown,
   AudioLines,
 } from "lucide-react";
+import Image from "next/image";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -69,14 +70,23 @@ export default function Home() {
               transition={{ delay: 0.3, duration: 0.8 }}
               className="flex flex-col items-center"
             >
-              <span className="text-7xl md:text-8xl font-extrabold tracking-tighter text-white mb-4 text-center">
+              <div className="relative w-[400px] h-[400px] rounded-full overflow-hidden">
+                <Image
+                  src="/Logo.png"
+                  alt="Logo"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/*   <span className="text-7xl md:text-8xl font-extrabold tracking-tighter text-white mb-4 text-center">
                 Conheça Sua Assistente Virtual <br /> <br /> Maia
-              </span>
+              </span> */}
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: "100px" }}
                 transition={{ delay: 0.5, duration: 1.5, ease: "easeInOut" }}
-                className="h-1 bg-violet-500 rounded-full"
+                className="h-1 bg-violet-500 rounded-full mt-6"
               />
             </motion.div>
           </motion.div>
@@ -97,8 +107,11 @@ export default function Home() {
             className="sticky top-0 z-50 w-full border-b backdrop-blur-md bg-black"
           >
             <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-              <div className="text-2xl font-bold tracking-tighter bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] bg-clip-text text-transparent">
-                Maia
+              <div className="flex items-center text-2xl  tracking-tighter ">
+                <Image src="/Logo.png" alt="" width={60} height={60} />
+                <p className="font-bold bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] bg-clip-text text-transparent">
+                  Maia
+                </p>
               </div>
               <button
                 onClick={() =>
@@ -171,7 +184,7 @@ export default function Home() {
               className="bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] h-[calc(100vh-32px)] flex justify-center items-center border-white border-y"
               id="video"
             >
-              <div>
+              <div className="flex gap-12 px-24">
                 <video
                   src="/Video.mp4"
                   className="h-[480] w-[848] rounded-lg"
@@ -181,6 +194,18 @@ export default function Home() {
                 >
                   <source src="/main.mp4" type="video/mp4" />
                 </video>
+                <div className="text-white font-bold">
+                  <h1 className="text-[40px]">Features</h1>
+                  <p className="text-[25px]">
+                    - Integração com Google <br />
+                    - Agenda Suporte a áudio, texto e imagens <br />
+                    - Detalhes completos no agendamento (local eparticipantes) <br />
+                    - Lembretes diários em diversos horários<br />
+                    - Antecipação do planejamento do dia seguinte (à noite)<br />
+                    - Gerenciamento de tarefas <br />
+                    - Buscas na internet com sugestão de endereços e locais<br />
+                  </p>
+                </div>
               </div>
             </motion.div>
 

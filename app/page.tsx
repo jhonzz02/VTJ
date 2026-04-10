@@ -8,6 +8,9 @@ import {
   CheckCircle2,
   ArrowDown,
   AudioLines,
+  Bell,
+  Search,
+  MapPin,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -48,6 +51,31 @@ export default function Home() {
     },
   };
 
+  //botao hero que abre o video
+const handleOpenVideo = () => {
+  const video = document.getElementById("demoVideo");
+
+  if (!video) return;
+
+  // scroll suave
+  video.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  // adiciona destaque visual (zoom leve)
+  video.classList.add("scale-105", "transition-all", "duration-500");
+
+  setTimeout(() => {
+    video.classList.remove("scale-105");
+
+    // fullscreen
+    if (video.requestFullscreen) {
+      video.requestFullscreen();
+    } else if (video.webkitRequestFullscreen) {
+      video.webkitRequestFullscreen();
+    }
+
+    video.play();
+  }, 600); // tempo da animação
+};
   return (
     <div className="flex min-h-screen flex-col selection:bg-violet-500 selection:text-white relative">
       {/* --- SPLASH SCREEN --- */}
@@ -108,7 +136,6 @@ export default function Home() {
           >
             <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
               <div className="flex items-center text-2xl  tracking-tighter ">
-                <Image src="/Logo.png" alt="" width={60} height={60} />
                 <p className="font-bold bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] bg-clip-text text-transparent">
                   Maia
                 </p>
@@ -167,13 +194,13 @@ export default function Home() {
                   variants={itemVariants}
                   className="flex flex-col sm:flex-row gap-4 w-full justify-center pt-4"
                 >
-                  <a
-                    href="#video"
+                  <button
+                    onClick={handleOpenVideo}
                     className="inline-flex h-12 items-center justify-center rounded-full bg-violet-600 px-8 text-base font-medium text-white shadow transition-colors hover:bg-violet-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-violet-700"
                   >
                     Ver demonstração
                     <ArrowDown className="ml-2 h-4 w-4" />
-                  </a>
+                  </button>
                 </motion.div>
               </div>
             </section>
@@ -181,30 +208,92 @@ export default function Home() {
             {/* video */}
             <motion.div
               variants={itemVariants}
-              className="bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] h-[calc(100vh-32px)] flex justify-center items-center border-white border-y"
+              className="bg-linear-to-r from-[#0D42BE] via-[#2325C3] to-[#360FC9] min-h-screen flex items-center border-white border-y"
               id="video"
             >
-              <div className="flex gap-12 px-24">
-                <video
-                  src="/Video.mp4"
-                  className="h-[480] w-[848] rounded-lg"
-                  controls
-                  autoPlay={true}
-                  muted={true}
-                >
-                  <source src="/main.mp4" type="video/mp4" />
-                </video>
-                <div className="text-white font-bold">
-                  <h1 className="text-[40px]">Features</h1>
-                  <p className="text-[25px]">
-                    - Integração com Google <br />
-                    - Agenda Suporte a áudio, texto e imagens <br />
-                    - Detalhes completos no agendamento (local eparticipantes) <br />
-                    - Lembretes diários em diversos horários<br />
-                    - Antecipação do planejamento do dia seguinte (à noite)<br />
-                    - Gerenciamento de tarefas <br />
-                    - Buscas na internet com sugestão de endereços e locais<br />
-                  </p>
+              <div className="container mx-auto px-4 py-4">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                  {/* Video */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="flex justify-center"
+                  >
+                    <video
+                      id="demoVideo"
+                      src="/Video.mp4"
+                      className="w-full max-w-2xl h-auto rounded-2xl shadow-2xl border-4 border-white/20"
+                      controls
+                      autoPlay
+                      muted
+                      loop
+                    />
+                  </motion.div>
+
+                  {/* Features */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="text-white"
+                  >
+                    <h2 className="text-4xl font-bold bg-gradient-to-r from-white to-violet-200 bg-clip-text text-transparent mb-2">
+                      Recursos Principais
+                    </h2>
+                    <p className="text-lg text-violet-100 mb-2">
+                      Descubra como a Maia transforma sua gestão de tempo com
+                      inteligência artificial avançada.
+                    </p>
+                    <div className="space-y-2">
+                      {[
+                        {
+                          icon: Calendar,
+                          text: "Integração completa com Google Agenda",
+                        },
+                        {
+                          icon: AudioLines,
+                          text: "Suporte a áudio, texto e imagens",
+                        },
+                        {
+                          icon: MapPin,
+                          text: "Detalhes completos no agendamento (local e participantes)",
+                        },
+                        {
+                          icon: Bell,
+                          text: "Lembretes diários em diversos horários",
+                        },
+                        {
+                          icon: CheckCircle2,
+                          text: "Antecipação do planejamento do dia seguinte",
+                        },
+                        {
+                          icon: MessageCircle,
+                          text: "Gerenciamento inteligente de tarefas",
+                        },
+                        {
+                          icon: Search,
+                          text: "Buscas na internet com sugestão de endereços e locais",
+                        },
+                      ].map((feature, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                          className="flex items-start gap-4 p-4 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300"
+                        >
+                          <feature.icon className="h-8 w-8 text-violet-300 mt-1 shrink-0" />
+                          <span className="text-lg font-medium">
+                            {feature.text}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
@@ -288,7 +377,7 @@ export default function Home() {
             </motion.section>
 
             {/* EXEMPLO */}
-            <motion.div variants={itemVariants} className="w-full pb-12">
+            <motion.div variants={itemVariants} className="w-full pb-12 px-4">
               <div className="relative mx-auto max-w-5xl rounded-2xl border border-zinc-200 bg-black p-4 shadow-xl">
                 <div className="absolute top-0 left-0 right-0 h-px bg-liner-to-r from-transparent via-violet-500 to-transparent opacity-20"></div>
 

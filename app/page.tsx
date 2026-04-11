@@ -13,6 +13,7 @@ import {
   MapPin,
 } from "lucide-react";
 import Image from "next/image";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -118,50 +119,42 @@ export default function Home() {
     }, 600); // tempo da animação
   };
   return (
-    <div className="flex min-h-screen flex-col selection:bg-violet-500 selection:text-white relative">
+    <div className="flex min-h-screen flex-col relative bg-black selection:bg-violet-500 selection:text-white">
+      {" "}
       {/* --- SPLASH SCREEN --- */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {isLoading && (
           <motion.div
             key="splash-screen"
             initial={{ opacity: 1 }}
-            exit={{
-              opacity: 0,
-              filter: "blur(15px)",
-              scale: 1.05,
-            }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-100 flex items-center justify-center bg-linear-to-br from-zinc-900 via-black to-violet-950"
+            exit={{ opacity: 0, scale: 1.02 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
               className="flex flex-col items-center"
             >
               <div className="relative w-[400px] h-[400px] rounded-full overflow-hidden">
-                <Image
+                <img
                   src="/Logo.png"
                   alt="Logo"
-                  fill
-                  className="object-cover"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
 
-              {/*   <span className="text-7xl md:text-8xl font-extrabold tracking-tighter text-white mb-4 text-center">
-                Conheça Sua Assistente Virtual <br /> <br /> Maia
-              </span> */}
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: "100px" }}
-                transition={{ delay: 0.5, duration: 1.5, ease: "easeInOut" }}
+                transition={{ delay: 0.35, duration: 1.2, ease: "easeInOut" }}
                 className="h-1 bg-violet-500 rounded-full mt-6"
               />
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-
       {/* --- CONTEÚDO PRINCIPAL --- */}
       {!isLoading && (
         <motion.div
@@ -237,10 +230,9 @@ export default function Home() {
                 >
                   <button
                     onClick={handleOpenVideo}
-                    className="inline-flex h-12 items-center justify-center rounded-full bg-violet-600 px-8 text-base font-medium text-white shadow transition-colors hover:bg-violet-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-violet-700"
+                    className="hover:cursor-pointer font-bold inline-flex h-12 items-center justify-center rounded-full bg-green-500 px-8 text-base text-white shadow transition-colors hover:bg-green-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-violet-700"
                   >
                     Ver demonstração
-                    <ArrowDown className="ml-2 h-4 w-4" />
                   </button>
                 </motion.div>
               </div>
@@ -260,19 +252,32 @@ export default function Home() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="flex justify-center"
+                    className="flex flex-col justify-center items-center gap-8"
                   >
                     <video
                       id="demoVideo"
                       ref={videoRef}
                       src="/Video.mp4"
-                      className="w-full max-w-2xl h-auto rounded-2xl shadow-2xl border-4 border-white/20"
+                      className="w-full h-auto rounded-2xl shadow-2xl border-4 border-white/20"
                       controls
                       autoPlay
                       muted
                       playsInline
                       loop
                     />
+
+                    <button
+                      onClick={() =>
+                        window.open(
+                          "https://pay.kiwify.com.br/fqyeisf",
+                          "_blank",
+                          "noopener,noreferrer",
+                        )
+                      }
+                      className="max-w-[300px] rounded-full px-8 py-4 text-lg font-bold text-white shadow-lg hover:bg-green-800 transition-all transform hover:scale-105 active:scale-95 duration-200 cursor-pointer bg-green-500"
+                    >
+                      Comprar agora
+                    </button>
                   </motion.div>
 
                   {/* Features */}
@@ -281,12 +286,12 @@ export default function Home() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-white"
+                    className="text-white flex flex-col items-center"
                   >
-                    <h2 className="text-4xl font-bold bg-gradient-to-r from-white to-violet-200 bg-clip-text text-transparent mb-2">
+                    <h2 className="text-center text-4xl font-bold bg-gradient-to-r from-white to-violet-200 bg-clip-text text-transparent mb-2">
                       Recursos Principais
                     </h2>
-                    <p className="text-lg text-violet-100 mb-2">
+                    <p className="text-lg text-violet-100 mb-2 text-center">
                       Descubra como a Maia transforma sua gestão de tempo com
                       inteligência artificial avançada.
                     </p>
@@ -516,7 +521,7 @@ export default function Home() {
                       "noopener,noreferrer",
                     )
                   }
-                  className="rounded-full px-8 py-4 text-lg font-bold text-white shadow-lg hover:bg-zinc-800 transition-all transform hover:scale-105 active:scale-95 duration-200 cursor-pointer bg-green-500"
+                  className="rounded-full px-8 py-4 text-lg font-bold text-white shadow-lg hover:bg-green-800 transition-all transform hover:scale-105 active:scale-95 duration-200 cursor-pointer bg-green-500"
                 >
                   Quero automatizar minha agenda!
                 </button>
@@ -541,7 +546,7 @@ export default function Home() {
                   className="rounded-full object-cover hover:cursor-pointer transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 backdrop-blur-sm"
                 /> */}
                 <p className="flex justify-center items-center">
-                  © 2026 VTJ Tecnologia. Todos os direitos reservados.
+                  © 2026 VTJ System Flows. Todos os direitos reservados.
                 </p>
               </div>
 
@@ -558,6 +563,15 @@ export default function Home() {
           </motion.footer>
         </motion.div>
       )}
+      {/* whatsapp */}
+      <a
+        href="https://wa.me/5511974530928?text=Olá%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20Maia!"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-white fixed bottom-6 right-6 z-110 flex items-center justify-center w-14 h-14 rounded-full bg-green-500 shadow-lg hover:bg-green-600 transition-all"
+      >
+        <FaWhatsapp text-white w-7 h-7 />
+      </a>
     </div>
   );
 }

@@ -6,13 +6,11 @@ import {
   Mic,
   MessageCircle,
   CheckCircle2,
-  ArrowDown,
   AudioLines,
   Bell,
   Search,
   MapPin,
 } from "lucide-react";
-import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
 
 export default function Home() {
@@ -36,7 +34,7 @@ export default function Home() {
         video.muted = false;
         video.volume = 0.5;
         await video.play();
-      } catch (err) {
+      } catch {
         // fallback: começa mutado
         video.muted = true;
         video.play().catch(() => {});
@@ -94,29 +92,33 @@ export default function Home() {
 
   //botao hero que abre o video
   const handleOpenVideo = () => {
-    const video = document.getElementById("demoVideo");
-
+    const video = videoRef.current;
     if (!video) return;
 
     // scroll suave
     video.scrollIntoView({ behavior: "smooth", block: "center" });
 
-    // adiciona destaque visual (zoom leve)
+    // destaque visual
     video.classList.add("scale-105", "transition-all", "duration-500");
 
     setTimeout(() => {
       video.classList.remove("scale-105");
 
+      // tenta dar play com som
+      video.muted = false;
+      video.volume = 0.5;
+
+      video.play().catch(() => {
+        // fallback (browser bloqueou som)
+        video.muted = true;
+        video.play();
+      });
+
       // fullscreen
       if (video.requestFullscreen) {
         video.requestFullscreen();
-      } else if (video.requestFullscreen) {
-        video.requestFullscreen();
       }
-
-      /*     video.play();
-       */
-    }, 600); // tempo da animação
+    }, 600);
   };
   return (
     <div className="flex min-h-screen flex-col relative bg-black selection:bg-violet-500 selection:text-white">
@@ -129,7 +131,7 @@ export default function Home() {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 1.02 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
+            className="fixed inset-0 z-100 flex items-center justify-center bg-black"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -137,7 +139,7 @@ export default function Home() {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="flex flex-col items-center"
             >
-              <div className="relative w-[400px] h-[400px] rounded-full overflow-hidden">
+              <div className="relative w-100 h-100 rounded-full overflow-hidden">
                 <img
                   src="/Logo.png"
                   alt="Logo"
@@ -274,7 +276,7 @@ export default function Home() {
                           "noopener,noreferrer",
                         )
                       }
-                      className="max-w-[300px] rounded-full px-8 py-4 text-lg font-bold text-white shadow-lg hover:bg-green-800 transition-all transform hover:scale-105 active:scale-95 duration-200 cursor-pointer bg-green-500"
+                      className="max-w-75 rounded-full px-8 py-4 text-lg font-bold text-white shadow-lg hover:bg-green-800 transition-all transform hover:scale-105 active:scale-95 duration-200 cursor-pointer bg-green-500"
                     >
                       Comprar agora
                     </button>
@@ -288,7 +290,7 @@ export default function Home() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="text-white flex flex-col items-center"
                   >
-                    <h2 className="text-center text-4xl font-bold bg-gradient-to-r from-white to-violet-200 bg-clip-text text-transparent mb-2">
+                    <h2 className="text-center text-4xl font-bold bg-linear-to-r from-white to-violet-200 bg-clip-text text-transparent mb-2">
                       Recursos Principais
                     </h2>
                     <p className="text-lg text-violet-100 mb-2 text-center">
@@ -568,9 +570,9 @@ export default function Home() {
         href="https://wa.me/5511974530928?text=Olá%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20Maia!"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-white fixed bottom-6 right-6 z-110 flex items-center justify-center w-14 h-14 rounded-full bg-green-500 shadow-lg hover:bg-green-600 transition-all"
+        className="text-white fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-green-500 shadow-lg hover:bg-green-600 transition-all"
       >
-        <FaWhatsapp text-white w-7 h-7 />
+        <FaWhatsapp />
       </a>
     </div>
   );
